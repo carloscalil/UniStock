@@ -1,0 +1,32 @@
+mat-form-field {
+  margin-bottom: 0.5rem;
+}
+
+.table-container {
+  overflow-x: auto;
+  max-width: 100%;
+}
+
+table[mat-table] {
+  width: 100%;
+}
+
+.status-inativo {
+  color: red;
+  font-weight: 500;
+}
+
+.status-ativo {
+  color: green;
+  font-weight: 500;
+}
+
+.saldo-critico {
+  color: #c00;
+  font-weight: 500;
+}
+
+.saldo-baixo {
+  color: #ff9800;
+  font-weight: 500;
+}

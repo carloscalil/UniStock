@@ -1,0 +1,32 @@
+.table-container {
+  overflow-x: auto;
+  max-width: 100%;
+  margin-top: 1rem;
+}
+
+table[mat-table] {
+  width: 100%;
+}
+
+.empty-table {
+  font-style: italic;
+  text-align: center;
+  padding: 1.5rem;
+  color: #666;
+}
+
+.api-error {
+  color: red;
+  padding: 1rem;
+  border: 1px solid red;
+  background-color: #ffeaea;
+  margin-bottom: 1rem;
+  border-radius: 4px;
+}
+
+::ng-deep .tooltip-nota {
+  white-space: pre-line;
+  font-size: 13px;
+  line-height: 1.4;
+  max-width: 320px;
+}

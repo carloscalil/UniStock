@@ -1,0 +1,14 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { 
+    height: 100%;
+    background-color: #fafafa;
+}
+body { margin: 0; font-family: Roboto, sans-serif; }
+
+a.active-link {
+  font-weight: 700 !important;
+  opacity: 1 !important;
+  border-bottom: 2px solid #ff4081;
+  padding-bottom: 4px;
+}

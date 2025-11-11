@@ -1,0 +1,57 @@
+.item-form {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 16px;
+}
+
+.produto-field {
+    flex: 1;
+    min-width: 250px;
+}
+
+.quantidade-field {
+    flex: 0 1 120px;
+    min-width: 120px;
+}
+
+.form-button {
+    margin-top: 8px; 
+}
+
+
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+}
+
+.empty-table {
+    font-style: italic;
+    text-align: center;
+    padding: 2rem;
+    color: #555;
+}
+
+.api-error {
+    color: #c00;
+    background-color: #ffe8e8;
+    border: 1px solid #c00;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 4px;
+    font-weight: 500;
+}
+
+.api-success {
+    color: #006400;
+    background-color: #e8f5e9;
+    border: 1px solid #006400;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 4px;
+    font-weight: 500;
+}

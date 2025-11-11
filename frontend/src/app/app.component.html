@@ -1,0 +1,26 @@
+<nav class="main-nav mat-elevation-z4">
+    <div class="nav-content">
+        <span class="nav-title">Korp ERP</span>
+        <div class="nav-links">
+
+            <a routerLink="/produtos" routerLinkActive="active-link">
+                <mat-icon>inventory_2</mat-icon>
+                Produtos
+            </a>
+
+            <a routerLink="/notas/cadastro" routerLinkActive="active-link">
+                <mat-icon>add_shopping_cart</mat-icon>
+                Cadastrar Nota
+            </a>
+
+            <a routerLink="/notas/lista" routerLinkActive="active-link">
+                <mat-icon>receipt_long</mat-icon>
+                Imprimir Notas
+            </a>
+        </div>
+    </div>
+</nav>
+
+<main class="main-content">
+    <router-outlet></router-outlet>
+</main>

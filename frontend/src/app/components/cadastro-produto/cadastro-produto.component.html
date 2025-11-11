@@ -1,0 +1,116 @@
+<mat-card style="max-width: 800px; margin: 2rem auto;">
+    <mat-card-header>
+        <mat-card-title>Cadastro de Produto</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content style="margin-top: 1rem;">
+        <form #formProduto="ngForm" (ngSubmit)="onSubmit(formProduto)">
+
+            <mat-form-field appearance="fill" style="width: 100%;">
+                <mat-label>Descrição</mat-label>
+                <input matInput type="text" id="descricao" name="descricao" [(ngModel)]="novoProduto.descricao" required
+                    #descricao="ngModel">
+                <mat-error *ngIf="descricao.invalid && (descricao.dirty || descricao.touched)">
+                    Descrição é obrigatória.
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" style="width: 100%;">
+                <mat-label>Saldo Inicial</mat-label>
+                <input matInput type="number" id="saldo" name="saldo" [(ngModel)]="novoProduto.saldo" required min="0"
+                    #saldo="ngModel">
+                <mat-error *ngIf="saldo.invalid && (saldo.dirty || saldo.touched)">
+                    Saldo é obrigatório e não pode ser negativo.
+                </mat-error>
+            </mat-form-field>
+
+            <div class="form-button-row">
+                <button mat-stroked-button type="button" (click)="onCancelarEdicao(formProduto)"
+                    *ngIf="produtoEmEdicao">
+                    Cancelar Edição
+                </button>
+
+                <button mat-raised-button color="primary" type="submit" [disabled]="formProduto.invalid">
+                    {{ produtoEmEdicao ? 'Atualizar Produto' : 'Cadastrar Produto' }}
+                </button>
+            </div>
+        </form>
+    </mat-card-content>
+</mat-card>
+
+
+<mat-card style="max-width: 800px; margin: 2rem auto;">
+    <mat-card-header>
+        <mat-card-title>Produtos em Estoque</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+        <div *ngIf="isLoading" style="text-align: center; padding: 2rem;">
+            <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+            <p style="font-style: italic; margin-top: 1rem;">Carregando produtos...</p>
+        </div>
+
+        <div *ngIf="erroApi"
+            style="color: red; padding: 1rem; border: 1px solid red; background-color: #ffeaea; margin-bottom: 1rem;">
+            <strong>Erro:</strong> {{ erroApi }}
+        </div>
+
+        <div *ngIf="!isLoading && dataSource.data.length > 0" class="table-container">
+            <mat-form-field appearance="outline" style="width: 100%; margin-bottom: 1rem; margin-top: 1rem;">
+                <mat-label>Pesquisar produto</mat-label>
+                <input matInput (keyup)="aplicarFiltro($event)" placeholder="Digite para filtrar..." />
+            </mat-form-field>
+            <table mat-table [dataSource]="dataSource" matSort>
+
+                <ng-container matColumnDef="codigo">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Código </th>
+                    <td mat-cell *matCellDef="let produto"> {{produto.codigo}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="descricao">
+                    <th mat-header-cell *matHeaderCellDef> Descrição </th>
+                    <td mat-cell *matCellDef="let produto"> {{produto.descricao}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="saldo">
+                    <th mat-header-cell *matHeaderCellDef> Saldo </th>
+                    <td mat-cell *matCellDef="let produto"
+                        [ngClass]="{'saldo-critico': produto.saldo < 4,'saldo-baixo': produto.saldo >= 4 && produto.saldo <= 10}">
+                        {{produto.saldo}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="ativo">
+                    <th mat-header-cell *matHeaderCellDef> Status </th>
+                    <td mat-cell *matCellDef="let produto">
+                        <span [ngClass]="produto.ativo ? 'status-ativo' : 'status-inativo'">
+                            {{produto.ativo ? 'Ativo' :
+                            'Inativo'}}
+                        </span>
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="acoes">
+                    <th mat-header-cell *matHeaderCellDef> Ações </th>
+                    <td mat-cell *matCellDef="let produto">
+                        <button mat-icon-button color="primary" (click)="onEditar(produto)" aria-label="Editar produto"
+                            [disabled]="!!produtoEmEdicao">
+                            <mat-icon>edit</mat-icon>
+                        </button>
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+
+            <mat-paginator [pageSizeOptions]="[5, 10, 25]" showFirstLastButtons
+                aria-label="Selecione a página de produtos">
+            </mat-paginator>
+        </div>
+
+        <div *ngIf="!isLoading && dataSource.data.length === 0"
+            style="font-style: italic; text-align: center; padding: 1rem;">
+            Nenhum produto cadastrado.
+        </div>
+    </mat-card-content>
+</mat-card>
