@@ -1,4 +1,4 @@
-# Teste Prático (Sistema de Notas Fiscais)
+# Sistema de Notas Fiscais
 
 Este repositório contém a implementação de um sistema de emissão de notas fiscais, desenvolvido como parte de um desafio técnico. A solução foi projetada como um sistema distribuído, separando as responsabilidades de backend e frontend.
 
