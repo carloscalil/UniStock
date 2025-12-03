@@ -1,6 +1,6 @@
 export const environment = {
     production: false,
     
-    estoqueApiUrl: 'http://localhost:5142/api',
-    faturamentoApiUrl: 'http://localhost:5025/api'
+    estoqueApiUrl: 'https://localhost:44328/api',
+    faturamentoApiUrl: 'https://localhost:44384/api'
 };
